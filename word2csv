@@ -1,0 +1,16 @@
+#/bin/bash
+
+echo
+echo "Convert doc files into html files: rawdoc/* -> rawhtml/"
+echo "-------------------------------------------------------"
+
+unoconv -v -o rawhtml/ -f html rawdoc/*doc
+
+echo
+echo "Call html cleaner: rawhtml/* -> cleanhtml/"
+echo "------------------------------------------"
+php htmlCleaner.php
+
+echo
+echo "Convert clean html into csv"
+echo "---------------------------"
