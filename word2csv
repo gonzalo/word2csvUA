@@ -14,3 +14,7 @@ php htmlCleaner.php
 echo
 echo "Convert clean html into csv"
 echo "---------------------------"
+php html2csv.php
+
+echo
+echo

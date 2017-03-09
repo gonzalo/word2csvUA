@@ -13,7 +13,7 @@ $purifier = new HTMLPurifier($config);
 $files = glob('rawhtml/*.{html}', GLOB_BRACE);
 foreach ($files as $file) {
 
-  echo "\n\nCleaning -> $file";
+  echo "\nCleaning -> $file";
 
   $file_content = file_get_contents($file, true);
   $clean_html = $purifier->purify($file_content);
