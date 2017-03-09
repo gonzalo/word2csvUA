@@ -1,4 +1,5 @@
-rawhtml/*
-cleanhtml/*
-rawdoc/*
-rawcsv/*
+#rawdoc/*
+#rawhtml/*
+#cleanhtml/*
+#rawdoc/*
+#rawcsv/*
