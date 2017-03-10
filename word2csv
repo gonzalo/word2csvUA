@@ -18,3 +18,9 @@ php html2csv.php
 
 echo
 echo
+echo "Merge csvs into final file"
+echo "--------------------------"
+php mergecsv.php
+
+echo
+echo
