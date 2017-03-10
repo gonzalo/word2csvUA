@@ -5,11 +5,8 @@ foreach ($files as $file) {
 
   echo "\nParsing to csv -> $file";
 
-  //obtenemos el archivo y lo limpiamos de saltos de línea y espacios inútiles
+  //obtenemos el archivo
   $file_content = file_get_contents($file, true);
-  $file_clean=str_replace("\n", " ", $file_content);
-  $file_clean=str_replace("<p> ", "<p>", $file_clean);
-  $file_clean=preg_replace("/.*LISTADO.+?<\/p>/s", "", $file_clean);
 
   //divide string mediante expresión regular
   //https://regex101.com/
@@ -18,7 +15,8 @@ foreach ($files as $file) {
   $regexp_titles = "/([^.]+?)\. (.*)/";  //para separar nombre y causa
   $expedientes = [];
 
-  preg_match_all($regexp_paragraphs, $file_clean, $raw_paragraphs);
+  //separamos los párrafos en un array
+  preg_match_all($regexp_paragraphs, $file_content, $raw_paragraphs);
 
   //por cada parrafo
   foreach ($raw_paragraphs[1] as $paragraph) {
