@@ -21,8 +21,22 @@ Militar. Quedó en libertad el 25-V-1941 (Fuente: Legajos 9304 y
 1. Convertir documentos word en html: $unoconv -o rawhtml/ -f html rawdoc/*doc
 2. Limpiar código html inútil
  - Conservar sólo las etiquetas p, b, i...
- - Eliminar atributos como class, style...
- - http://htmlpurifier.org/
-3. Captar bloques (nombre, ¿población?, caso y convertir a formato CSV)
- 1. Buscar bloque p
- 1. Buscar en contenido el primer "."
+ - Eliminar atributos como class, style... y código html inútil
+ - http://htmlpurifier.org/ + str_preg_replace
+3. Captar bloques (nombre y caso: convertir a formato CSV)
+ 1. dividir por párrafos p
+ 1. Buscar en contenido el primer "." para extrer el título, el resto
+ es la causa
+ 1. Teniéndolo en un array añadir al principio la población (nombre archivo)
+ 1. Guardarlo todo en un CSV
+4. Fusionar todos los CSV para hacer la subida más fácil.
+
+## Prerrequisitos
+
+- Libreoffice
+- Unoconv (disponible en apt y homebrew)
+- php
+
+## Uso
+
+Dejar todos los doc en el directorio "rawdoc" y ejecutar desde la consola ```word2csv```
