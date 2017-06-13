@@ -1,10 +1,11 @@
 #/bin/bash
 
 echo
-echo "Convert doc files into html files: rawdoc/* -> rawhtml/"
+echo "Convert doc and odt files into html files: rawdoc/* -> rawhtml/"
 echo "-------------------------------------------------------"
 
 unoconv -v -o rawhtml/ -f html rawdoc/*doc
+unoconv -v -o rawhtml/ -f html rawdoc/*odt
 
 echo
 echo "Call html cleaner: rawhtml/* -> cleanhtml/"
