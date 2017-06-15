@@ -1,9 +1,11 @@
 <?php
 
-$merged_csv_filename = 'mergedcsv/final.csv';
+//fusionamos los archivos de represaliados
+
+$merged_csv_filename = 'mergedcsv/represaliados-final.csv';
 $csv_merged_file = fopen( $merged_csv_filename, 'w');
 
-$files = glob('rawcsv/*.{csv}', GLOB_BRACE);
+$files = glob('rawcsv/represaliados/*.{csv}', GLOB_BRACE);
 
 foreach ($files as $file) {
 

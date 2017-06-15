@@ -1,12 +1,18 @@
 <?php
 
-$files = glob('cleanhtml/*.{html}', GLOB_BRACE);
+// convertimos de html a csv los archivos de represaliados
+$files = glob('cleanhtml/represaliados/*.{html}', GLOB_BRACE);
 foreach ($files as $file) {
 
-  echo "\nParsing to csv -> $file";
+  echo "\nParsing file -> $file";
 
   //obtenemos el archivo
   $file_content = file_get_contents($file, true);
+
+  //fase 1
+  //extraer nombre de población y descripción
+
+
 
   //divide string mediante expresión regular
   //https://regex101.com/
@@ -33,7 +39,7 @@ foreach ($files as $file) {
 
 
   //writing array to csv file
-  $csv_file_name = 'rawcsv/' . basename($file,'.html') . '.csv';
+  $csv_file_name = 'rawcsv/represaliados/' . basename($file,'.html') . '.csv';
   $csv_file = fopen( $csv_file_name, 'w');
 
   foreach ($expedientes as $expediente) {
@@ -42,7 +48,7 @@ foreach ($files as $file) {
 
   fclose( $csv_file );
 
-  echo "\nDone           -> $csv_file_name";
+  echo "\nDone represaliados -> $csv_file_name";
 
 }
 

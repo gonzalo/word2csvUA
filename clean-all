@@ -5,8 +5,14 @@ read -p "Cleaner will wipe all data in rawhtml, cleanhtml, rawcsv & mergedcsv di
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    rm rawcsv/*
-    rm rawhtml/*
-    rm cleanhtml/*
-    rm mergedcsv/*
+    rm -f rawhtml/*
+    rm -f cleanhtml/*.html
+    rm -f cleanhtml/represaliados/*.html
+    rm -f cleanhtml/poblaciones/*.html
+    rm -f rawcsv/*.csv
+    rm -f rawcsv/represaliados/*.csv
+    rm -f rawcsv/poblaciones/*.csv
+    rm -f mergedcsv/*.csv
+else
+    echo "Canceled"
 fi

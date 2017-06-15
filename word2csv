@@ -1,20 +1,33 @@
 #/bin/bash
 
+# convierte todos los archivos doc docx y odt en html
 echo
 echo "Convert doc and odt files into html files: rawdoc/* -> rawhtml/"
 echo "-------------------------------------------------------"
 
-unoconv -v -o rawhtml/ -f html rawdoc/{*doc,*odt}
+unoconv -o rawhtml/ -f html rawdoc/{*doc,*docx,*odt}
 
+# limpia todas las etiquetas html inncesarias
+# y divide el contenido del html en dos ficheros por cada población
+# uno con la descripción de la población y el otro con los registros
+# de represaliados de la misma
 echo
 echo "Call html cleaner: rawhtml/* -> cleanhtml/"
 echo "------------------------------------------"
 php htmlCleaner.php
 
+# convierte los archivos html en csv
 echo
 echo "Convert clean html into csv"
 echo "---------------------------"
 php html2csv.php
+
+# fusiona los dos grupos de archivos csv
+# uno con los nombres y descripciones de las poblaciones
+# y otro con todos los represaliados
+# al final de este proceso tendremos dos archivos en mergedcsv/
+# poblaciones-final.csv
+# represaliados-final.csv
 
 echo
 echo
