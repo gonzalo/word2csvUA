@@ -19,6 +19,10 @@ foreach ($files as $file) {
   //falla con los saltos de línea "los elimino en la línea anterior"
   $regexp_paragraphs = "/<p>(.+?)<\/p>/"; //para separar los párrafos
   $regexp_titles = "/([^.]+?)\. (.*)/";  //para separar nombre y causa
+
+  //cadena alternativa, si se ajusta el fichero de origen podríamos extraer
+  //un campo más procendencia.
+  //$regexp_titles = "/([^.]+?)\. ([^.]+?)\. (.*)/";  //para separar nombre, procedencia y causa
   $expedientes = [];
 
   //separamos los párrafos en un array
@@ -32,9 +36,10 @@ foreach ($files as $file) {
     $expediente = [
       $raw_expediente[1][0], //nombre
       $raw_expediente[2][0], //causa
+      //$raw_expediente[2][0], //procedencia
+      //$raw_expediente[3][0], //causa
     ];
     array_push($expedientes, $expediente);
-
   }
 
 
@@ -48,7 +53,7 @@ foreach ($files as $file) {
 
   fclose( $csv_file );
 
-  echo "\nDone represaliados -> $csv_file_name";
+  echo "\nDone  represaliados -> $csv_file_name";
 
 }
 
