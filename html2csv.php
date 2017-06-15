@@ -1,18 +1,56 @@
 <?php
 
+//fase 1
+//extraer nombre de población y descripción
+
 // convertimos de html a csv los archivos de represaliados
-$files = glob('cleanhtml/represaliados/*.{html}', GLOB_BRACE);
+$files = glob('cleanhtml/poblaciones/*.{html}', GLOB_BRACE);
 foreach ($files as $file) {
 
-  echo "\nParsing file -> $file";
+  echo "\nParsing file población-> $file";
 
   //obtenemos el archivo
   $file_content = file_get_contents($file, true);
 
-  //fase 1
-  //extraer nombre de población y descripción
 
 
+  //divide string mediante expresión regular
+  //captura un grupo con el nombre de la población y otro con su descripción
+  $regexp = "/( <p><b>.*<\/b><\/p>| .*?)( <p>.*)/";
+  preg_match($regexp, $file_content, $matches);
+
+  //antes de guardar limpiamos código html, espacios sobrantes...
+  $nombre_poblacion = trim(strip_tags($matches[1]));
+  $descripcion_poblacion = trim($matches[2]);
+
+  $datos_poblacion = [$nombre_poblacion, $descripcion_poblacion];
+
+  //writing array to csv file
+  $csv_file_name = 'rawcsv/poblaciones/' . basename($file,'.html') . '.csv';
+  $csv_file = fopen( $csv_file_name, 'w');
+
+  fputcsv( $csv_file, $datos_poblacion, ',', '"');
+
+  fclose( $csv_file );
+
+  echo "\nDone  población -> $csv_file_name";
+
+}
+
+
+
+
+//fase 2
+//extraer los expedientes de represaliados
+
+// convertimos de html a csv los archivos de represaliados
+$files = glob('cleanhtml/represaliados/*.{html}', GLOB_BRACE);
+foreach ($files as $file) {
+
+  echo "\nParsing file represaliados-> $file";
+
+  //obtenemos el archivo
+  $file_content = file_get_contents($file, true);
 
   //divide string mediante expresión regular
   //https://regex101.com/

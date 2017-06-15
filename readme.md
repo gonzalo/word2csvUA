@@ -1,5 +1,5 @@
 # word2csv converter
-## Proyecto "Archivo de represariados" del Archivo de la Democracia
+## Proyecto "Archivo de represaliados" del Archivo de la Democracia
 
 - Se pretende convertir una colección de documentos word en una serie de
 documentos CSV que puedan ser cargados en una BD con un formato dado
@@ -20,12 +20,12 @@ Militar. Quedó en libertad el 25-V-1941 (Fuente: Legajos 9304 y
 
 ### v0.2
  - Los documentos ahora pueden ser doc, docx y odt
- - Los documentos incluyen ahora la descripción de la población al principio seguidos de "Listado de represariados"
- - Se generan dos excel uno con la lista de poblaciones y sus descripciones y otro con la lista de represariados
+ - Los documentos incluyen ahora la descripción de la población al principio seguidos de "Listado de represaliados"
+ - Se generan dos excel uno con la lista de poblaciones y sus descripciones y otro con la lista de represaliados
 
 ### v0.1
  - Transformación de los documentos sólo con los registros
- - se genera un único excel con la lista de represariados.
+ - se genera un único excel con la lista de represaliados.
 
 
 ## Procedimiento
@@ -35,16 +35,16 @@ Militar. Quedó en libertad el 25-V-1941 (Fuente: Legajos 9304 y
  - Conservar sólo las etiquetas p, b, i...
  - Eliminar atributos como class, style... y código html inútil
  - http://htmlpurifier.org/ + str_preg_replace
-1. Extraer la población y su descripción (guardar en csv "población-[nom_pueblo].csv")
+1. Extraer la población y su descripción (guardar en csv "población/[nom_pueblo].csv")
 1. Captar registros (nombre y caso: convertir a formato CSV)
  1. dividir por párrafos p
  1. Buscar en contenido el primer "." para extraer el título, el resto
  es la causa
  1. Teniéndolo en un array añadir al principio la población (nombre archivo)
- 1. Guardarlo todo en un CSV -> "represaliados-[nom_pueblo].csv"
+ 1. Guardarlo todo en un CSV -> "represaliados/[nom_pueblo].csv"
 1. Fusionar todos los CSV para hacer la subida más fácil.
- 1. "Pueblos.csv"
- 1. "Represariados.csv"
+ 1. "pueblos-final.csv"
+ 1. "represaliados-final.csv"
 
 ## Prerrequisitos
 
